@@ -20,39 +20,71 @@ namespace Basics
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //app.UseDefaultFiles();
-            //в wwwroot будет искаться файл default.htm(.html), index.htm(.html)
-            //и будет использоваться как точка входа
+            //app.UseStaticFiles();
+            ////указываем, что работаем со статическими файлами
+
+            #region UseDefaultFiles
+            //app.UseDefaultFiles();            
+            //app.UseStaticFiles();
+            ////в wwwroot будет искаться файл default.htm(.html), index.htm(.html)
+            ////и будет использоваться как точка входа
 
 
-            //DefaultFilesOptions options = new DefaultFilesOptions();
-            //options.DefaultFileNames.Clear();
-            //options.DefaultFileNames.Add("another.html");
-            //app.UseDefaultFiles(options);
-            //"другая" страница будет выводиться при условии того, что
-            //первый app.UseDefaultFiles() закомментирован
-            //при этом, до "не основной" странице из папки wwwroot
-            //всегда можно добраться через адресную строку
+            //DefaultFilesOptions defFileOptions = new DefaultFilesOptions();
+            //defFileOptions.DefaultFileNames.Clear();
+            //defFileOptions.DefaultFileNames.Add("another.html");
+            //app.UseDefaultFiles(defFileOptions);
+            //app.UseStaticFiles();
+            ////"другая" страница будет выводиться при условии того, что
+            ////первый app.UseDefaultFiles() закомментирован
+            ////при этом, до "не основной" странице из папки wwwroot
+            ////всегда можно добраться через адресную строку
+            #endregion
 
-
+            #region UseDirectoryBrowser
             //app.UseDirectoryBrowser();
-            //можно просматривать файлы в каталоге wwwroot
+            ////можно просматривать файлы в каталоге wwwroot
 
 
-            var fileProviderOptions = new DirectoryBrowserOptions()
-            {
-                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/internal")),
-                RequestPath = new PathString("/files")
-            };
+            //var fileProviderOptions = new DirectoryBrowserOptions()
+            //{
+            //    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/internal")),
+            //    RequestPath = new PathString("/files")
+            //};
+            //app.UseDirectoryBrowser(fileProviderOptions);
+            ////здесь сопоставлена папка internal и путь localhost/files
+            ////файлы видны по пути localhost/files/, но открыть их нельзя
 
-            app.UseDirectoryBrowser(fileProviderOptions);
-            //здесь сопоставлена папка internal и путь localhost/files
-            //файлы видны, но открыть их нельзя
+            //app.UseDefaultFiles();
+            //app.UseStaticFiles();
+            //var stFileOptions = new StaticFileOptions()
+            //{
+            //    FileProvider =
+            //    new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/internal")),
+            //    RequestPath = new PathString("/files")
+            //};
+            //app.UseStaticFiles(stFileOptions);
+            ////здесь сопоставлена папка internal и путь localhost/files
+            ////отличие от предыдущего примера - нет браузера файлов
+            ////если использовать этот код совместно с UseDirectoryBrowser
+            ////файлы внутри будут открываться для просмотра
+            #endregion
 
-
+            #region UseFileServer
+            app.UseDefaultFiles();
             app.UseStaticFiles();
 
+            app.UseFileServer(new FileServerOptions
+            {
+                EnableDirectoryBrowsing = true,
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/internal")),
+                RequestPath = new PathString("/files"),
+                EnableDefaultFiles = false
+            });
 
+            //совмещение функционала из блока UseDirectoryBrowser
+            //при этом стартовая страница также работает
+            #endregion
         }
     }
 }
