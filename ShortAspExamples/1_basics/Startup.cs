@@ -25,9 +25,6 @@ namespace _1_basics
 
             app.UseRouting();
 
-
-
-
             //подключам MiddlewareExampleClass
             app.UseMiddleware<MiddlewareExampleClass>();
 
@@ -44,12 +41,6 @@ namespace _1_basics
                 {
                     await context.Response.WriteAsync("\nHello, Users!");
                 });
-            });
-
-            app.Run(async (context) =>
-            {
-                context.Response.ContentType = "text/html;charset=utf-8";
-                await Task.FromResult(0);
             });
         }
     }
