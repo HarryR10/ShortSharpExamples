@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MVCRazorExample.Models;
+using MVCRazorExample.Util;
 
 namespace MVCRazorExample.Controllers
 {
@@ -18,9 +19,15 @@ namespace MVCRazorExample.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        //Все перегрузки методов вызывают ошибки в рантайме
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
+
+        public IActionResult Index(string id)
         {
-            return View();
+            return new HtmlResult($"<h2>Current id = {id}</h2>");
         }
 
         public IActionResult Privacy()
