@@ -44,6 +44,11 @@ namespace MVCRazorExample
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                    name: "my",
+                    template: "my/{controller=Test}/{action=Index}/{id?}"
+                );
+
+                routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
                 //controller=Home - указывает, что здесь первым должно идти имя класса контроллера.

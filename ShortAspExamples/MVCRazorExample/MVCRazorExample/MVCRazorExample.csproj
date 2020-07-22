@@ -8,5 +8,12 @@
 
   <ItemGroup>
     <Folder Include="Util\" />
+    <Folder Include="Files\" />
+    <Folder Include="Views\Razortest\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Files\IActionsLIst.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
