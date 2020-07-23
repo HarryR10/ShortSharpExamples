@@ -10,10 +10,21 @@
     <Folder Include="Util\" />
     <Folder Include="Files\" />
     <Folder Include="Views\Razortest\" />
+    <Folder Include="ViewComponents\" />
+    <Folder Include="Views\Shared\Components\" />
+    <Folder Include="Views\Shared\Components\User\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Files\IActionsLIst.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="Views\Shared\_SecondLayout.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Views\Razortest\_Item.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>

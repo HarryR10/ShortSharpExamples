@@ -2,7 +2,14 @@
     т.е. передаем объект для отображения - MVCRazorExample.Person (имя класса, по сути),
     а обращаемся к нему через Model.ИмяСвойства
     мы можем передать лишь один объект во вьюшку...
+
+    ниже мы назначаем layout строчкой Layout = "/Views/Shared/_SecondLayout.cshtml"
 *@
+
+@*@{
+        ViewBag.Title = "Layout example";
+        Layout = "/Views/Shared/_SecondLayout.cshtml";
+    }*@
 
 @model MVCRazorExample.Person
 
@@ -53,3 +60,44 @@ else
         index++;
     }
 </ul>
+
+@using (Html.BeginForm())
+{
+    <h1>форма</h1>
+}
+
+@await Html.PartialAsync("_Item", Model)
+@*если оставить ; после выражения выше, как в обычном коде, знак будет обработан как символ разметки...
+    Это происходит потому что выражение выше НЕ ЯВЛЯЕТСЯ блоком кода, а лишь отображающейся в HTML переменной
+    перед которой нужно ставить @
+
+    RenderPartialAsync отличается тем, что они вызывает отрисовку представления,
+    но при этом не возвращает его в качестве результата, а отображает его.
+
+    @await Html.RenderPartialAsync("_Item", Model); - работать не будет, так как метод возвращает void
+
+    мы можем использовать это различие для обработки результата, не отображая его (см. пример далее)
+*@
+<br />
+@{
+    await Html.RenderPartialAsync("_Item", Model);
+}
+
+<br />
+@{
+    Model.FirstName = "Petr";
+    Model.LastName = "Petrov";
+    var result = await Html.PartialAsync("_Item", Model);
+}
+@result
+
+<br />
+@{
+    result = await Html.PartialAsync("_Item",
+       new Person()
+       {
+           FirstName = "Sid",
+           LastName = "Sidorov"
+       });
+}
+@result

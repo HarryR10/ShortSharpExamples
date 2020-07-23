@@ -1,0 +1,10 @@
+﻿@model MVCRazorExample.Models.UserModel
+
+@if (Model.IsLoggedIn)
+{
+    <h1>Welcome: @Model.UserName    </h1>
+}
+else
+{
+    <h1>Please login</h1>
+}

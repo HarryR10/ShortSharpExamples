@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div style="background:#eee; font-size:200%; padding:30px">
+        @await Component.InvokeAsync("User")
+        @* встраиваем компонент *@
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+    <div style="background:#eee; padding:30px">
+        <vc:User></vc:User>
+    </div>
+</body>
+</html>
