@@ -6,24 +6,27 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.6" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ClientApp\" />
     <Folder Include="ClientApp\src\" />
     <Folder Include="ClientApp\src\app\" />
+    <Folder Include="Models\" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="ClientApp\src\app\app.component" />
     <None Remove="ClientApp\src\app\app.module.ts" />
     <None Remove="ClientApp\src\main.ts" />
     <None Remove="ClientApp\src\polyfills.ts" />
+    <None Remove="ClientApp\src\app\product.ts" />
+    <None Remove="ClientApp\src\app\data.service.ts" />
+    <None Remove="ClientApp\src\app\app.component.ts" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\app\app.component.ts">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\app.module.ts">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\main.ts">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -31,10 +34,28 @@
     <TypeScriptCompile Include="ClientApp\src\polyfills.ts">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\product.ts">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\data.service.ts">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\app.component.ts">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </TypeScriptCompile>
   </ItemGroup>
   <ItemGroup>
     <None Update="ClientApp\src\index.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="ClientApp\src\app\app.component.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="ClientApp\angular.json" />
+    <Content Remove="appsettings.json" />
+    <Content Remove="ClientApp\package.json" />
+    <Content Remove="ClientApp\tsconfig.json" />
   </ItemGroup>
 </Project>
