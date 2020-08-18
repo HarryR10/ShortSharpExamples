@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Product>
+
+@foreach (var p in Model)
+{
+    <div>
+        <hЗ>@p.Name</hЗ>
+        @p.Description
+        @{
+            var culture = new CultureInfo("en-US");
+        }
+        @*<h4>@($"${p.Price.ToString(culture)}")</h4>*@
+        <h4>@p.Price.ToString("C", culture)</h4>
+    </div>
+}
