@@ -2,13 +2,24 @@
 
 <html>
 <head>
-    <meta name="viewport" content="text/html" charset="utf-8" />
+    <meta name="viewport" content="width=device-width" charset="utf-8" />
+    <link rel="stylesheet"
+          asp-href-include="/node_modules/bootstrap/dist/**/*.min.css"
+          asp-href-exclude="**/*-reboot*,**/*-grid*" />
     <title>SportsStore</title>
 </head>
 <body>
-    <div>
-        <h1>Список товаров:</h1>
-        @RenderBody()
+    <div class="navbar navbar-inverse bg-inverse" role="navigation">
+        <a class="navbar-brand" href="#">SPORTS STORE</a>
+    </div>
+    <div class="row m-1 p-1">
+        <div id="categories" class="col-3">
+            Put something useful here later
+        </div>
+        <div class="col-9">
+            <h1>Список товаров:</h1>
+            @RenderBody()
+        </div>
     </div>
 </body>
 </html>

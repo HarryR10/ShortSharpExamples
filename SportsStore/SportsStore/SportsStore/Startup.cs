@@ -9,16 +9,29 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SportsStore.Models;
+using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
+using System.IO;
+using Microsoft.Extensions.FileProviders;
 
 namespace SportsStore
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
+        public Startup(IConfiguration configuration) =>
+            Configuration = configuration;
+
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddMvc();
-            services.AddMvc(o => o.EnableEndpointRouting = false);
-            services.AddTransient<IProductRepository, FakeProductRepository>();
+            //TODO:check connection
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseNpgsql(
+                    Configuration["Data:SportStoreProducts:ConnectionString"]));
+
+            services.AddTransient<IProductRepository, EFProductRepository>();
+            services.AddMvc(options => options.EnableEndpointRouting = false);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -30,15 +43,32 @@ namespace SportsStore
 
             app.UseStatusCodePages();
 
+            //app.UseDefaultFiles();
+
             app.UseStaticFiles();
 
-            //app.UseMvc();
+            //app.UseFileServer(new FileServerOptions()
+            //{
+            //    FileProvider = new PhysicalFileProvider(
+            //        Path.Combine(env.ContentRootPath, "node_modules")
+            //    ),
+            //    RequestPath = "/node_modules",
+            //    EnableDirectoryBrowsing = false
+            //});
 
             app.UseMvc(routes => {
+
                 routes.MapRoute(
-                name: "default",
-                template: "{controller=Product}/{action=List}/{id?}");
+                    name: "pagination",
+                    template: "Products/Page{productPage}",
+                    defaults: new { Controller = "Product", action = "List" });
+
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Product}/{action=List}/{id?}");
             });
+
+            SeedData.EnsurePopulated(app);
         }
     }
 }
