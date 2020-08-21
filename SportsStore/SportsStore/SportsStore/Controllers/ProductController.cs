@@ -21,20 +21,28 @@ namespace SportsStore.Controllers
         }
 
         //https://localhost:5001/?productPage=2
+        //https://localhost:5001/?category=Soccer
         //
-        public ViewResult List(int productPage = 1)
-            => View(new ProductsListViewModel
-            {
-                Products = repository.Products
+        public ViewResult List(string category, int productPage = 1)
+        {
+            var products = repository.Products
+                    .Where(p => category == null || p.Category == category)
                     .OrderBy(p => p.ProductID)
-                    .Skip((productPage - 1) * PageSize)
-                    .Take(PageSize),
+                    .Skip((productPage - 1) * PageSize);
+
+            return View(new ProductsListViewModel
+            {
+                Products = products.Take(PageSize),
+
                 PagingInfo = new PagingInfo
                 {
                     CurrentPage = productPage,
                     ItemsPerPage = PageSize,
-                    TotalItems = repository.Products.Count()
-                }
+                    TotalItems = products.Count()
+                },
+
+                CurrentCategory = category
             });
+        }
     }
 }

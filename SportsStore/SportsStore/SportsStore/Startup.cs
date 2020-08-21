@@ -25,7 +25,6 @@ namespace SportsStore
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //TODO:check connection
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(
                     Configuration["Data:SportStoreProducts:ConnectionString"]));
@@ -43,29 +42,40 @@ namespace SportsStore
 
             app.UseStatusCodePages();
 
-            //app.UseDefaultFiles();
-
             app.UseStaticFiles();
-
-            //app.UseFileServer(new FileServerOptions()
-            //{
-            //    FileProvider = new PhysicalFileProvider(
-            //        Path.Combine(env.ContentRootPath, "node_modules")
-            //    ),
-            //    RequestPath = "/node_modules",
-            //    EnableDirectoryBrowsing = false
-            //});
 
             app.UseMvc(routes => {
 
+                //Page{productPage:int} - будет работать
+                //и Soccer/Page2
+                //и Soccer/page2 (т.е. эта часть маршрута регистронезависима)
+                //однако Soccer!=soccer, т.к. уже эта часть строки маршрута передается в метод
                 routes.MapRoute(
-                    name: "pagination",
-                    template: "Products/Page{productPage}",
-                    defaults: new { Controller = "Product", action = "List" });
+                    name: null,
+                    template: "{category}/Page{productPage:int}",
+                    defaults: new { controller = "Product", action = "List" }
+                );
 
                 routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Product}/{action=List}/{id?}");
+                    name: null,
+                    template: "Page{productPage:int}",
+                    defaults: new { controller = "Product", action = "List", productPage = 1 }
+                );
+
+                routes.MapRoute(
+                    name: null,
+                    template: "{category}",
+                    defaults: new { controller = "Product", action = "List", productPage = 1 }
+                );
+
+                routes.MapRoute(
+                    name: null,
+                    template: "",
+                    defaults: new { controller = "Product", action = "List", productPage = 1 });
+
+                routes.MapRoute(
+                    name: null,
+                    template: "{controller}/{action}/{id?}");
             });
 
             SeedData.EnsurePopulated(app);
