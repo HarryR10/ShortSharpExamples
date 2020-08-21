@@ -24,7 +24,8 @@ namespace SportsStore
                     webBuilder
                     .UseStartup<Startup>()
                     .UseDefaultServiceProvider(options =>
-                        options.ValidateScopes = false);
+                        options.ValidateScopes = false)
+                    .UseWebRoot("Views");
                 });
     }
 }
