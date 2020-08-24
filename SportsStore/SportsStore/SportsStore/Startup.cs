@@ -31,6 +31,8 @@ namespace SportsStore
 
             services.AddTransient<IProductRepository, EFProductRepository>();
             services.AddMvc(options => options.EnableEndpointRouting = false);
+            services.AddMemoryCache();
+            services.AddSession();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -43,6 +45,8 @@ namespace SportsStore
             app.UseStatusCodePages();
 
             app.UseStaticFiles();
+
+            app.UseSession();
 
             app.UseMvc(routes => {
 
