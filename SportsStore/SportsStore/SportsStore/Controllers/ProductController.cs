@@ -27,12 +27,13 @@ namespace SportsStore.Controllers
         {
             var products = repository.Products
                     .Where(p => category == null || p.Category == category)
-                    .OrderBy(p => p.ProductID)
-                    .Skip((productPage - 1) * PageSize);
+                    .OrderBy(p => p.ProductID);
 
             return View(new ProductsListViewModel
             {
-                Products = products.Take(PageSize),
+                Products = products
+                    .Skip((productPage - 1) * PageSize)
+                    .Take(PageSize),
 
                 PagingInfo = new PagingInfo
                 {
