@@ -17,6 +17,7 @@
     <Folder Include="Views\Shared\Components\NavigationMenu\" />
     <Folder Include="Views\Cart\" />
     <Folder Include="Views\Shared\Components\CartSummary\" />
+    <Folder Include="Views\Order\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.4" />
