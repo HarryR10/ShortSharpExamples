@@ -3,7 +3,6 @@ using System.Linq;
 
 namespace SportsStore.Models
 {
-
     public class Cart
     {
         private List<CartLine> lineCollection = new List<CartLine>();
@@ -37,12 +36,5 @@ namespace SportsStore.Models
         public virtual void Clear() => lineCollection.Clear();
 
         public virtual IEnumerable<CartLine> Lines => lineCollection;
-    }
-
-    public class CartLine
-    {
-        public int CartLineID { get; set; }
-        public Product Product { get; set; }
-        public int Quantity { get; set; }
     }
 }

@@ -30,6 +30,13 @@ namespace SportsStore
                     Configuration["Data:SportStoreProducts:ConnectionString"]));
 
             services.AddTransient<IProductRepository, EFProductRepository>();
+
+            //для удовлетворения связанных запросов к эк­земплярам Cart
+            //должен применяться один и тот же объект.
+            services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            //services.AddTransient<IOrderRepository, EFOrderRepository>();
             services.AddMvc(options => options.EnableEndpointRouting = false);
             services.AddMemoryCache();
             services.AddSession();
