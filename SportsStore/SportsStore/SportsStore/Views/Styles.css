@@ -1,3 +1,8 @@
 ﻿#cartWidget {
     margin-right: 0px
 }
+
+.input-validation-error {
+    border-color: red;
+    background-color: #fee;
+}

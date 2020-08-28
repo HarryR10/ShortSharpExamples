@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" asp-href-include="/node_modules/bootstrap/dist/css/*.min.css" />
+    <link rel="stylesheet" asp-href-include="/Styles.css" />
+    <title>@ViewBag.Title</title>
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="/node_modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+</head>
+<body class="m-1 p-1">
+    <div class="bg-info p-2"><h4>@ViewBag.Title</h4></div>
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success mt-1">@TempData["message"]</div>
+    }
+    @RenderBody()
+</body>
+</html>
