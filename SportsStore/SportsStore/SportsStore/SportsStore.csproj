@@ -19,6 +19,8 @@
     <Folder Include="Views\Shared\Components\CartSummary\" />
     <Folder Include="Views\Order\" />
     <Folder Include="Views\Admin\" />
+    <Folder Include="Views\Account\" />
+    <Folder Include="Views\Error\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.4" />
@@ -28,6 +30,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.4" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="node_modules\bootstrap\LICENSE" />

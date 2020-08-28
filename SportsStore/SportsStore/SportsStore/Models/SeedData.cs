@@ -2,19 +2,18 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace SportsStore.Models
 {
     public static class SeedData
     {
-        public static void EnsurePopulated(IApplicationBuilder app)
+        public static void EnsurePopulated(IServiceProvider services)
         {
-            //get context from services
-            ApplicationDbContext context = app.ApplicationServices
-                .GetRequiredService<ApplicationDbContext>();
+            ApplicationDbContext context = services.GetRequiredService<ApplicationDbContext>();
 
-            //like update-database command
-            context.Database.Migrate();
+            ////like update-database command
+            //context.Database.Migrate();
 
             if (!context.Products.Any())
             {

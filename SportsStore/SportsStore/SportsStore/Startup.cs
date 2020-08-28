@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.AspNetCore.Identity;
 
 namespace SportsStore
 {
@@ -28,6 +29,14 @@ namespace SportsStore
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(
                     Configuration["Data:SportStoreProducts:ConnectionString"]));
+
+            services.AddDbContext<AppIdentityDbContext>(options =>
+                options.UseNpgsql(
+                    Configuration["Data:SportStoreIdentity:ConnectionString"]));
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppIdentityDbContext>()
+                .AddDefaultTokenProviders();
 
             services.AddTransient<IProductRepository, EFProductRepository>();
 
@@ -47,6 +56,11 @@ namespace SportsStore
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseStatusCodePages();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Error");
             }
 
             app.UseStatusCodePages();
@@ -54,6 +68,8 @@ namespace SportsStore
             app.UseStaticFiles();
 
             app.UseSession();
+
+            app.UseAuthentication();
 
             app.UseMvc(routes => {
 
@@ -89,7 +105,8 @@ namespace SportsStore
                     template: "{controller}/{action}/{id?}");
             });
 
-            SeedData.EnsurePopulated(app);
+            //SeedData.EnsurePopulated(app);
+            //IdentitySeedData.EnsurePopulated(app);
         }
     }
 }
