@@ -191,4 +191,9 @@
   <ItemGroup>
     <Content Remove="package-lock.json" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="Views\Styles.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

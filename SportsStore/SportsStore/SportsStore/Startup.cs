@@ -40,7 +40,7 @@ namespace SportsStore
 
             services.AddTransient<IProductRepository, EFProductRepository>();
 
-            //для удовлетворения связанных запросов к эк­земплярам Cart
+            //для запросов к эк­земплярам Cart
             //должен применяться один и тот же объект.
             services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
