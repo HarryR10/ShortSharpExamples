@@ -14,11 +14,11 @@
       <mat-label>Password</mat-label>
       <input type="password" matInput #password>
     </mat-form-field>
-    <button mat-flat-button color="primary" click='login(email.value, password.value)'>Login</button>
+    <button mat-flat-button color="primary" (click)="login(email.value, password.value)">Login</button>
   </mat-card>
 
   <mat-card *ngIf='isLoggedIn'>
-    <button mat-flat-button color="primary" click='logout()'>Logout</button>
+    <button mat-flat-button color="primary" (click)="logout()">Logout</button>
   </mat-card>
 
   <router-outlet></router-outlet>
