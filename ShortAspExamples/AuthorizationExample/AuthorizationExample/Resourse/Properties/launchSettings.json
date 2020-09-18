@@ -17,7 +17,6 @@
     },
     "Resourse": {
       "commandName": "Project",
-      "launchBrowser": true,
       "applicationUrl": "https://localhost:8865;http://localhost:16238",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

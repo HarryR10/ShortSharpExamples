@@ -2,11 +2,14 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+// import { IonicStorageModule } from '@ionic/Storage';
+
 export const environment = {
   production: false,
   authApi: 'https://localhost:5001/',
   storeApi: 'https://localhost:8865/',
-  tokenWhiteListedDomains: ['localhost:8865', 'localhost:5001']
+  tokenWhiteListedDomains: ['localhost:8865', 'localhost:5001'],
+  // storage: IonicStorageModule
 };
 
 /*

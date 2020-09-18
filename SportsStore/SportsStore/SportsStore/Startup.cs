@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using System.IO;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace SportsStore
 {
@@ -53,6 +54,11 @@ namespace SportsStore
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //app.UseForwardedHeaders(new ForwardedHeadersOptions
+            //{
+            //    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            //});
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

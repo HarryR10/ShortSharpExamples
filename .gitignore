@@ -260,3 +260,13 @@ paket-files/
 __pycache__/
 *.pyc
 *.awcache/
+launch.json
+.dockerignore
+docker-compose.dcproj
+ShortAspExamples/2_basics/docker-compose.override.yml
+ShortAspExamples/2_basics/docker-compose.yml
+ShortAspExamples/2_basics/Dockerfile
+docker-compose.override.yml
+docker-compose.yml
+FolderProfile 1.pubxml
+Dockerfile

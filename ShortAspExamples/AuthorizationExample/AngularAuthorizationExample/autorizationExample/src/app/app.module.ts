@@ -16,7 +16,9 @@ import { OrdersComponent } from './components/orders/orders.component';
 import { STORE_API_URL, AUTH_API_URL } from './app-injection-tokens';
 import { environment } from 'src/environments/environment';
 import { JwtModule } from '@auth0/angular-jwt';
-import { ACCESS_TOKEN_KEY } from './services/auth.service'
+import { ACCESS_TOKEN_KEY } from './services/auth.service';
+
+import { IonicStorageModule } from '@ionic/Storage';
 
 export function tokenGetter() {
   return localStorage.getItem(ACCESS_TOKEN_KEY)
@@ -55,7 +57,8 @@ export function tokenGetter() {
   {
     provide: STORE_API_URL,
     useValue: environment.storeApi
-  }],
+  },
+  { provide: Storage, useClass: IonicStorageModule },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
