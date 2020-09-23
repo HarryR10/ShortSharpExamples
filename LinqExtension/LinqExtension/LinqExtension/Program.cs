@@ -23,38 +23,6 @@ namespace LinqExtension
 
             var list = Left.LeftJoinTo(Right)
                 .OnEquals("First", "BBBFirst");
-
-            //var a =
-            //    from i in list
-            //    select new BBB()
-
-            //list.SelectAs(() =>
-            //        {
-            //            foreach (var el in list)
-            //            {
-            //                var fromLeft = el.GetType().GetProperty("left").GetValue("left");
-            //                var fromRight = el.GetType().GetProperty("subRight").GetValue("subRight");
-
-            //                yield return new BBB
-            //            (
-            //                (int)fromLeft.GetType().GetProperty("First").GetValue("First"),
-            //                (int)fromRight.GetType().GetProperty("BBBSecond").GetValue("BBBSecond")
-            //            );
-            //            }
-            //        });
-
-
-            //(doIt) =>
-            //{
-            //    doIt = new BBB
-            //    (
-            //        (int)fromLeft.GetType().GetProperty("First").GetValue("First"),
-            //        (int)fromRight.GetType().GetProperty("BBBSecond").GetValue("BBBSecond")
-            //    );
-            //}
-            //);
-            //{fromLeft => (int)fromLeft.GetType().GetProperty("First").GetValue("First")}
-
         }
     }
 
