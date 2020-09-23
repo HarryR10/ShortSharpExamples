@@ -33,29 +33,5 @@ namespace LinqExtension
 
             return ResultList;
         }
-
-        //public static List<T1> SelectAs<T1>(
-        //    this IEnumerable items,
-        //    Dictionary<string, string> forLeft,
-        //    Dictionary<string, string> forRight)
-        //{
-        //    var result = new List<T1>();
-
-            //foreach (var el in items)
-            //{
-                
-
-            //    var fromLeft = el.GetType().GetProperty("left").GetValue("left");
-            //    var fromRight = el.GetType().GetProperty("subRight").GetValue("subRight");
-
-            //    foreach (var kl in forLeft)
-            //    {
-            //        kl.Key
-            //    }
-                
-            //}
-
-            //return result;
-        //}
     }
 }
