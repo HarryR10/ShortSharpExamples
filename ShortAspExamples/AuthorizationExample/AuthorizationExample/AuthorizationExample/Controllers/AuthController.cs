@@ -59,7 +59,7 @@ namespace AuthorizationExample.Controllers
                 return Ok(
                     new
                     {
-                        acsess_token = GenerateJWT(user)
+                        access_token = GenerateJWT(user)
                     });
             }
 

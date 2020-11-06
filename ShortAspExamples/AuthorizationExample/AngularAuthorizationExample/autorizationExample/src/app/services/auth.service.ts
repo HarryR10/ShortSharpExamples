@@ -23,20 +23,18 @@ export class AuthService {
   ) { }
 
   login(email: string, password: string): Observable<Token> {
-
-    let half = this.http.post<Token>(`${this.apiUrl}api/auth/login`,
-      { email, password })
-
     return this.http.post<Token>(`${this.apiUrl}api/auth/login`,
       { email, password }
     ).pipe(
       tap(token => {
+        console.log(token);
         localStorage.setItem(ACCESS_TOKEN_KEY, token.access_token);
+        // localStorage.setItem(ACCESS_TOKEN_KEY, '123');
       })
     )
   }
 
-  isAuthentificated(): boolean {
+  isAuthenticated(): boolean {
     let token = localStorage.getItem(ACCESS_TOKEN_KEY);
     return token && !this.jwtHelper.isTokenExpired(token);
   }

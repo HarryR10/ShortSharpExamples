@@ -9,7 +9,7 @@ import { error } from '@angular/compiler/src/util';
 })
 export class AppComponent {
   public get isLoggedIn(): boolean {
-    return this.as.isAuthentificated()
+    return this.as.isAuthenticated()
   }
 
   constructor(private as: AuthService) { }
